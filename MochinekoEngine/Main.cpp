@@ -172,7 +172,7 @@ void InitWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, i
 	WNDCLASSEXW wndClass = {};
 	wndClass.cbSize = sizeof(WNDCLASSEXW);
 	wndClass.hInstance = hInstance;
-	wndClass.lpszClassName = L"Game";
+	wndClass.lpszClassName = L"TypingGame";
 	wndClass.lpfnWndProc = WndProc;
 	wndClass.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
 	wndClass.hIconSm = LoadIcon(nullptr, IDI_WINLOGO);
@@ -182,8 +182,8 @@ void InitWindow(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, i
 	RegisterClassExW(&wndClass);
 
 	mainWindowHandle_ = CreateWindowW(
-		L"Game",
-		L"GameTitle",
+		L"TypingGame",
+		L"タイピングゲーム",
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		1280, 720,

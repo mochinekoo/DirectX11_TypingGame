@@ -5,6 +5,10 @@
 #include "DebugScene.h"
 #include "ObjectManager.h"
 
+#include "../TitleScene.h"
+#include "../RunningScene.h"
+#include "../EndingScene.h"
+
 namespace SceneManager {
 	std::map<std::string, BaseScene*> sceneMap_;	// シーンの名前とポインタ
 	BaseScene* currentScene_ = nullptr;				// 現在のシーン
@@ -13,8 +17,12 @@ namespace SceneManager {
 void SceneManager::Init() {
 	sceneMap_.clear();
 	AddScene(new DebugScene());
+	AddScene(new TitleScene());
+	AddScene(new RunningScene());
+	AddScene(new EndingScene());
 
-	ChangeScene("DebugScene");
+	//ChangeScene("DebugScene");
+	ChangeScene("TitleScene");
 }
 
 void SceneManager::Update() {

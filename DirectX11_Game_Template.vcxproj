@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EndingScene.h" />
     <ClInclude Include="MochinekoEngine\BaseCollider.h" />
     <ClInclude Include="MochinekoEngine\BaseObject.h" />
     <ClInclude Include="MochinekoEngine\BaseScene.h" />
@@ -60,8 +61,11 @@
     <ClInclude Include="MochinekoEngine\Transform.h" />
     <ClInclude Include="MochinekoEngine\VideoData.h" />
     <ClInclude Include="MochinekoEngine\VideoObject.h" />
+    <ClInclude Include="RunningScene.h" />
+    <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EndingScene.cpp" />
     <ClCompile Include="MochinekoEngine\Box.cpp" />
     <ClCompile Include="MochinekoEngine\BoxCollider.cpp" />
     <ClCompile Include="MochinekoEngine\CameraManager.cpp" />
@@ -97,6 +101,8 @@
     <ClCompile Include="MochinekoEngine\Texture.cpp" />
     <ClCompile Include="MochinekoEngine\VideoData.cpp" />
     <ClCompile Include="MochinekoEngine\VideoObject.cpp" />
+    <ClCompile Include="RunningScene.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="MochinekoEngine\PixelShader.hlsl">
