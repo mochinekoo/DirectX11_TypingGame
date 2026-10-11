@@ -2,13 +2,19 @@
 #include <filesystem>
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <Windows.h>
 #include "MochinekoEngine/DX2DManager.h"
+#include <random>
+#include "MochinekoEngine/SceneManager.h"
 
 using json = nlohmann::json;
 
 RunningScene::RunningScene()
     : BaseScene("RunningScene") {
+    nowWord_ = {};
+    wordDataList_ = {};
+    time_ = 0;
 }
 
 RunningScene::~RunningScene()
@@ -16,14 +22,47 @@ RunningScene::~RunningScene()
 }
 
 void RunningScene::Init() {
-    InitWordData();
+    // InitWordData();
+
+    wordDataList_ = DEFAULT_WORD_DATA;
+    time_ = DEFAULT_WORD_TIME;
+    nowWord_ = wordDataList_[0];
 }
 
 void RunningScene::Update() {
+    time_ -= MochinekoEngine::GetDeltaTime();
+
+   
+
+    if (time_ <= 0) {
+        NextWord();
+        time_ = DEFAULT_WORD_TIME;
+    }
 }
 
 void RunningScene::Draw() {
-    DX2DManager::DrawFontText(0, 0, wordDataList_[0].displayName, Color::Black());
+    //DX2DManager::DrawFontText(0, 0, wordDataList_[0].displayName, Color::Black());
+
+    DX2DManager::DrawFontText(0, 0, nowWord_.displayName, Color::Black());
+    DX2DManager::DrawFontText(0, 50, "(" + nowWord_.typingText + ")", Color::Black());
+    DX2DManager::DrawFontText(0, 100, std::to_string(time_), Color::Black());
+}
+
+void RunningScene::NextWord() {
+
+    auto it = std::remove_if(wordDataList_.begin(), wordDataList_.end(), [this](const WordData& word) {return word == nowWord_;});
+    wordDataList_.erase(it);    // ワードリストから現在のワードを削除する
+    
+    if (wordDataList_.empty()) {    // ワードリストが空の時
+        SceneManager::ChangeScene("EndingScene");
+    }
+    else {
+        std::random_device seed_gen;
+        std::mt19937 engine(seed_gen());
+        std::shuffle(wordDataList_.begin(), wordDataList_.end(), engine);
+
+        nowWord_ = wordDataList_[0];    // シャッフルしてから、現在のワードを代入
+    }
 }
 
 void RunningScene::InitWordData() {
