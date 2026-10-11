@@ -102,9 +102,7 @@
     <ClCompile Include="MochinekoEngine\VideoData.cpp" />
     <ClCompile Include="MochinekoEngine\VideoObject.cpp" />
     <ClCompile Include="RunningScene.cpp" />
-    <ClCompile Include="TitleScene.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
+    <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="MochinekoEngine\PixelShader.hlsl">
@@ -117,6 +115,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="config.json" />
     <None Include="worddata.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
