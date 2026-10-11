@@ -7,6 +7,7 @@
 #include "MochinekoEngine/DX2DManager.h"
 #include <random>
 #include "MochinekoEngine/SceneManager.h"
+#include "MochinekoEngine/InputManager.h"
 
 using json = nlohmann::json;
 
@@ -32,20 +33,28 @@ void RunningScene::Init() {
 void RunningScene::Update() {
     time_ -= MochinekoEngine::GetDeltaTime();
 
-   
-
     if (time_ <= 0) {
         NextWord();
         time_ = DEFAULT_WORD_TIME;
+        InputManager::DestoryKeyBuffer();
     }
 }
 
 void RunningScene::Draw() {
     //DX2DManager::DrawFontText(0, 0, wordDataList_[0].displayName, Color::Black());
+    std::string keyBuffer = InputManager::GetKeyBuffer();
+    std::string lowKeyBuffer = "";
+    for (int i = 0; i < keyBuffer.size(); i++) {
+        char key = keyBuffer[i];
+        lowKeyBuffer += std::tolower(key);
+    }
 
     DX2DManager::DrawFontText(0, 0, nowWord_.displayName, Color::Black());
     DX2DManager::DrawFontText(0, 50, "(" + nowWord_.typingText + ")", Color::Black());
+    DX2DManager::DrawFontText(0, 75, lowKeyBuffer, Color::Black());
     DX2DManager::DrawFontText(0, 100, std::to_string(time_), Color::Black());
+
+    lowKeyBuffer = "";
 }
 
 void RunningScene::NextWord() {
