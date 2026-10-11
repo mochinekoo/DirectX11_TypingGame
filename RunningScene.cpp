@@ -16,7 +16,7 @@ RunningScene::~RunningScene()
 }
 
 void RunningScene::Init() {
-    InitJson();
+    InitWordData();
 }
 
 void RunningScene::Update() {
@@ -26,7 +26,7 @@ void RunningScene::Draw() {
     DX2DManager::DrawFontText(0, 0, wordDataList_[0].displayName, Color::Black());
 }
 
-void RunningScene::InitJson() {
+void RunningScene::InitWordData() {
     std::ifstream file("worddata.json");
 
     if (!file.is_open()) {
@@ -47,6 +47,29 @@ void RunningScene::InitJson() {
             std::string displayWord =
                 wordJson.at("displayName").get<std::string>();
             wordDataList_.push_back({ displayWord });
+        }
+    }
+    catch (const std::exception& e) {
+        OutputDebugStringA(e.what());
+        OutputDebugStringA("\n");
+    }
+}
+
+void RunningScene::InitGameConfig() {
+    std::ifstream file("config.json");
+
+    if (!file.is_open()) {
+        return;
+    }
+
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    std::string str = buffer.str();
+
+    try {
+        json rootJson = json::parse(str);
+
+        for (const auto& wordJson : rootJson) {
         }
     }
     catch (const std::exception& e) {

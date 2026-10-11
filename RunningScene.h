@@ -20,6 +20,7 @@ public:
 	void Update() override;
 	void Draw() override;
 
-	void InitJson();
+	void InitWordData();
+	void InitGameConfig();
 };
 
