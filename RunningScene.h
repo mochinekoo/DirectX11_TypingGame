@@ -1,8 +1,16 @@
 #pragma once
 #include "MochinekoEngine/BaseScene.h"
+#include <nlohmann/json.hpp>
+#include <vector>
+#include <string>
+
+struct WordData {
+	std::string displayName = "";
+};
 
 class RunningScene : public BaseScene {
 private:
+	std::vector<WordData> wordDataList_;
 public:
 
 	RunningScene();
@@ -12,5 +20,6 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	void InitJson();
 };
 
