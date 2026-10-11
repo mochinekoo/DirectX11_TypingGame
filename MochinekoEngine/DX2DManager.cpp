@@ -61,11 +61,11 @@ void DX2DManager::DrawFontText(const int x, const int y, const std::string& text
 	d2dColor.a = color.a_;
 	defaultFont_.brush_->SetColor(d2dColor);
 
-	int wcharCount = MultiByteToWideChar(CP_ACP, 0, text.data(), text.size(), nullptr, 0);
+	int wcharCount = MultiByteToWideChar(CP_UTF8, 0, text.data(), text.size(), nullptr, 0);
 
 	std::wstring wText(wcharCount, L'\0');
 
-	MultiByteToWideChar(CP_ACP, 0, text.data(), text.size(), wText.data(), wcharCount);
+	MultiByteToWideChar(CP_UTF8, 0, text.data(), text.size(), wText.data(), wcharCount);
 
 	renderTarget_->DrawTextW(
 		wText.c_str(),
