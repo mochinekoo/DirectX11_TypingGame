@@ -18,8 +18,8 @@ namespace {
 }
 
 void GameManager::Init() {
-    time_ = GameManager::DEFAULT_WORD_TIME;
-    wordDataList_ = GameManager::DEFAULT_WORD_DATA;
+    time_ = DEFAULT_WORD_TIME;
+    wordDataList_ = DEFAULT_WORD_DATA;
     nowWord_ = wordDataList_[0];
 }
 

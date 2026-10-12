@@ -6,6 +6,7 @@
 Player::Player()
 	: BaseObject("Player") {
     correctCount_ = 0;
+	canDestroyNextScene_ = false;
 }
 
 Player::~Player() {

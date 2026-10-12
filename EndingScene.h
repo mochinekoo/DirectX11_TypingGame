@@ -3,6 +3,7 @@
 
 class EndingScene : public BaseScene {
 private:
+	float sceneCounter_;
 public:
 
 	EndingScene();
