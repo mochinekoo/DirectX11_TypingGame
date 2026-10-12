@@ -53,8 +53,13 @@ void InputManager::Update() {
 
     for (int i = 0; i < 256; i++) {
         if (CheckDownKey(i)) {
-            if (ConvertKeyName(i) == nullptr) return;
-            keyBuffer_ += ConvertKeyName(i);
+            if (i == DIK_BACKSPACE) {
+                keyBuffer_.pop_back();
+            }
+            else {
+                if (ConvertKeyName(i) == nullptr) continue;
+                keyBuffer_ += ConvertKeyName(i);
+            }
         }
     }
 
