@@ -1,13 +1,10 @@
-#pragma once
+﻿#pragma once
 #include <vector>
 #include "WordData.h"
 
-namespace {
-	const float DEFAULT_WORD_TIME = 20;
-	std::vector<WordData> DEFAULT_WORD_DATA = { {"車", "kuruma"}, {"パソコン", "pasokonn"}, {"学校", "gakkou"} };
-}
-
 namespace GameManager {
+	inline const float DEFAULT_WORD_TIME = 20;
+	inline std::vector<WordData> DEFAULT_WORD_DATA = { {"車", "kuruma"}, {"パソコン", "pasokonn"}, {"学校", "gakkou"} };
 
 	void Init();
 	void InitWordData();
@@ -15,6 +12,6 @@ namespace GameManager {
 	WordData GetWord();
 	void NextWord();
 
-	int GetTime();
-	void SetTime(int time);
+	float GetTime();
+	void SetTime(float time);
 }

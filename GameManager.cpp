@@ -18,8 +18,9 @@ namespace {
 }
 
 void GameManager::Init() {
-    time_ = DEFAULT_WORD_TIME;
-    wordDataList_ = DEFAULT_WORD_DATA;
+    time_ = GameManager::DEFAULT_WORD_TIME;
+    wordDataList_ = GameManager::DEFAULT_WORD_DATA;
+    nowWord_ = wordDataList_[0];
 }
 
 void GameManager::InitWordData() {
@@ -71,12 +72,10 @@ void GameManager::NextWord() {
     }
 }
 
-int GameManager::GetTime() {
+float GameManager::GetTime() {
 	return time_;
 }
 
-void GameManager::SetTime(int time) {
-	if (time <= 0) {
-		time_ = time;
-	}
+void GameManager::SetTime(float time) {
+    time_ = time;
 }
