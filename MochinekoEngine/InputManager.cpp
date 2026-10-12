@@ -119,8 +119,19 @@ const char* InputManager::ConvertKeyName(const int key) {
     }
 }
 
-std::string InputManager::GetKeyBuffer() {
+std::string InputManager::GetUpKeyBuffer() {
     return keyBuffer_;
+}
+
+std::string InputManager::GetLowKeyBuffer() {
+    std::string keyBuffer = GetUpKeyBuffer();
+    std::string lowKeyBuffer = "";
+    for (int i = 0; i < keyBuffer.size(); i++) {
+        char key = keyBuffer[i];
+        lowKeyBuffer += std::tolower(key);
+    }
+
+    return lowKeyBuffer;
 }
 
 void InputManager::DestoryKeyBuffer() {
