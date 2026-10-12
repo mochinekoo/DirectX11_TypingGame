@@ -53,8 +53,13 @@ void InputManager::Update() {
 
     for (int i = 0; i < 256; i++) {
         if (CheckDownKey(i)) {
-            if (ConvertKeyName(i) == nullptr) return;
-            keyBuffer_ += ConvertKeyName(i);
+            if (i == DIK_BACKSPACE) {
+                keyBuffer_.pop_back();
+            }
+            else {
+                if (ConvertKeyName(i) == nullptr) continue;
+                keyBuffer_ += ConvertKeyName(i);
+            }
         }
     }
 
@@ -119,8 +124,19 @@ const char* InputManager::ConvertKeyName(const int key) {
     }
 }
 
-std::string InputManager::GetKeyBuffer() {
+std::string InputManager::GetUpKeyBuffer() {
     return keyBuffer_;
+}
+
+std::string InputManager::GetLowKeyBuffer() {
+    std::string keyBuffer = GetUpKeyBuffer();
+    std::string lowKeyBuffer = "";
+    for (int i = 0; i < keyBuffer.size(); i++) {
+        char key = keyBuffer[i];
+        lowKeyBuffer += std::tolower(key);
+    }
+
+    return lowKeyBuffer;
 }
 
 void InputManager::DestoryKeyBuffer() {

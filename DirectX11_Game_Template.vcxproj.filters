@@ -37,6 +37,12 @@
     <Filter Include="MochinekoEngine\Util">
       <UniqueIdentifier>{736c3d9b-6723-48b1-b809-ab3975827667}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Manager">
+      <UniqueIdentifier>{e14c22ad-0fa0-4dd1-b34e-6e466ef0bd20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Data">
+      <UniqueIdentifier>{46595f99-ed0a-4b54-87ac-b5143f321bab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MochinekoEngine\BaseObject.h">
@@ -171,6 +177,15 @@
     <ClInclude Include="EndingScene.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="WordData.h">
+      <Filter>Source\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Source\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MochinekoEngine\CameraManager.cpp">
@@ -287,6 +302,12 @@
     <ClCompile Include="EndingScene.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="MochinekoEngine\PixelShader.hlsl">
@@ -295,5 +316,9 @@
     <FxCompile Include="MochinekoEngine\VertexShader.hlsl">
       <Filter>MochinekoEngine\Shader</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.json" />
+    <None Include="worddata.json" />
   </ItemGroup>
 </Project>

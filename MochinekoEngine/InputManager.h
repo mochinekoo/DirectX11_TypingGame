@@ -21,7 +21,8 @@ namespace InputManager {
 	bool CheckUpMouse(const int button);
 
 	const char* ConvertKeyName(const int key);
-	std::string GetKeyBuffer();
+	std::string GetUpKeyBuffer();
+	std::string GetLowKeyBuffer();
 	void DestoryKeyBuffer();
 
 	POINT GetMousePostion();
