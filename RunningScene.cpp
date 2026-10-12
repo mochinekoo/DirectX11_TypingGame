@@ -47,7 +47,7 @@ void RunningScene::Update() {
 
     if (time <= 0) {
         GameManager::NextWord();
-        GameManager::SetTime(DEFAULT_WORD_TIME);
+        GameManager::SetTime(GameManager::DEFAULT_WORD_TIME);
         InputManager::DestoryKeyBuffer();
     }
 }

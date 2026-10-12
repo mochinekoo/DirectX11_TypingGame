@@ -71,11 +71,11 @@ void GameManager::NextWord() {
     }
 }
 
-int GameManager::GetTime() {
+float GameManager::GetTime() {
 	return time_;
 }
 
-void GameManager::SetTime(int time) {
+void GameManager::SetTime(float time) {
 	if (time <= 0) {
 		time_ = time;
 	}
