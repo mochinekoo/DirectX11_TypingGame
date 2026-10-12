@@ -20,6 +20,7 @@ namespace {
 void GameManager::Init() {
     time_ = DEFAULT_WORD_TIME;
     wordDataList_ = DEFAULT_WORD_DATA;
+    nowWord_ = wordDataList_[0];
 }
 
 void GameManager::InitWordData() {
@@ -76,7 +77,5 @@ float GameManager::GetTime() {
 }
 
 void GameManager::SetTime(float time) {
-	if (time <= 0) {
-		time_ = time;
-	}
+    time_ = time;
 }

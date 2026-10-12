@@ -27,4 +27,8 @@ public:
 	void RemoveCorrectCount() {
 		correctCount_--;
 	};
+
+	void ResetCorrectCount() {
+		correctCount_ = 0;
+	}
 };

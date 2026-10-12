@@ -36,7 +36,7 @@ void RunningScene::Init() {
 void RunningScene::Update() {
     auto keyBuffer = InputManager::GetLowKeyBuffer();
     auto nowWord = GameManager::GetWord();
-    int time = GameManager::GetTime();
+    float time = GameManager::GetTime();
     GameManager::SetTime(time - MochinekoEngine::GetDeltaTime());
 
     if (keyBuffer == nowWord.typingText) {
@@ -57,7 +57,7 @@ void RunningScene::Draw() {
     std::string keyBuffer = InputManager::GetUpKeyBuffer();
     std::string lowKeyBuffer = InputManager::GetLowKeyBuffer();
     auto nowWord = GameManager::GetWord();
-    int time = GameManager::GetTime();
+    float time = GameManager::GetTime();
 
     DX2DManager::DrawFontText(0, 0, nowWord.displayName, Color::Black());
     DX2DManager::DrawFontText(0, 50, "(" + nowWord.typingText + ")", Color::Black());
