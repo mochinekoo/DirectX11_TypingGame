@@ -31,7 +31,13 @@ void RunningScene::Init() {
 }
 
 void RunningScene::Update() {
+    auto keyBuffer = InputManager::GetLowKeyBuffer();
     time_ -= MochinekoEngine::GetDeltaTime();
+
+    if (keyBuffer == nowWord_.typingText) {
+        NextWord();
+        InputManager::DestoryKeyBuffer();
+    }
 
     if (time_ <= 0) {
         NextWord();
@@ -42,19 +48,14 @@ void RunningScene::Update() {
 
 void RunningScene::Draw() {
     //DX2DManager::DrawFontText(0, 0, wordDataList_[0].displayName, Color::Black());
-    std::string keyBuffer = InputManager::GetKeyBuffer();
-    std::string lowKeyBuffer = "";
-    for (int i = 0; i < keyBuffer.size(); i++) {
-        char key = keyBuffer[i];
-        lowKeyBuffer += std::tolower(key);
-    }
+    std::string keyBuffer = InputManager::GetUpKeyBuffer();
+    std::string lowKeyBuffer = InputManager::GetLowKeyBuffer();
 
     DX2DManager::DrawFontText(0, 0, nowWord_.displayName, Color::Black());
     DX2DManager::DrawFontText(0, 50, "(" + nowWord_.typingText + ")", Color::Black());
     DX2DManager::DrawFontText(0, 75, lowKeyBuffer, Color::Black());
     DX2DManager::DrawFontText(0, 100, std::to_string(time_), Color::Black());
 
-    lowKeyBuffer = "";
 }
 
 void RunningScene::NextWord() {
