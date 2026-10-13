@@ -59,10 +59,10 @@ void RunningScene::Draw() {
     auto nowWord = GameManager::GetWord();
     float time = GameManager::GetTime();
 
-    DX2DManager::DrawFontText(0, 0, nowWord.displayName, Color::Black());
-    DX2DManager::DrawFontText(0, 50, "(" + nowWord.typingText + ")", Color::Black());
-    DX2DManager::DrawFontText(0, 75, lowKeyBuffer, Color::Black());
-    DX2DManager::DrawFontText(0, 100, std::to_string(time), Color::Black());
+    DX2DManager::DrawFontText(0, 0, nowWord.displayName, Color::Black(), CP_ACP);
+    DX2DManager::DrawFontText(0, 50, "(" + nowWord.typingText + ")", Color::Black(), CP_ACP);
+    DX2DManager::DrawFontText(0, 75, lowKeyBuffer, Color::Black(), CP_ACP);
+    DX2DManager::DrawFontText(0, 100, std::to_string(time), Color::Black(), CP_ACP);
 
 }
 

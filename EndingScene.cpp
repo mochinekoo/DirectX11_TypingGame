@@ -39,6 +39,6 @@ void EndingScene::Update() {
 void EndingScene::Draw() {
 	Player* player = ObjectManager::FindObject<Player>();
 	if (player != nullptr) {
-		DX2DManager::DrawFontText(0, 0, "‚ ‚È‚½‚Ì¬Ñ‚ÍF" + std::to_string(player->GetCorrectCount()), Color::Black());
+		DX2DManager::DrawFontText(0, 0, "‚ ‚È‚½‚Ì¬Ñ‚ÍF" + std::to_string(player->GetCorrectCount()), Color::Black(), CP_ACP);
 	}
 }

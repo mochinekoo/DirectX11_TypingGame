@@ -20,5 +20,5 @@ void TitleScene::Update() {
 }
 
 void TitleScene::Draw() {
-	DX2DManager::DrawFontText(0, 0, "ゲームを開始するにはスペースキーを押してください", Color::Black());
+	DX2DManager::DrawFontText(0, 0, L"ゲームを開始するにはスペースキーを押してください", Color::Black());
 }

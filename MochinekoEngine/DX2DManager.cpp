@@ -48,7 +48,7 @@ void DX2DManager::Init() {
 	renderTarget_->CreateSolidColorBrush(DEFAULT_COLOR, &defaultFont_.brush_);
 }
 
-void DX2DManager::DrawFontText(const int x, const int y, const std::string& text, const Color& color) {
+void DX2DManager::DrawFontText(const int x, const int y, const std::string& text, const Color& color, UINT codePage) {
 	D2D1_SIZE_F size = renderTarget_->GetSize();
 	renderTarget_->BeginDraw();
 	D2D1_MATRIX_3X2_F transform_ = D2D1::Matrix3x2F::Scale(1.0, 1.0) * D2D1::Matrix3x2F::Translation(x, y);
@@ -61,15 +61,39 @@ void DX2DManager::DrawFontText(const int x, const int y, const std::string& text
 	d2dColor.a = color.a_;
 	defaultFont_.brush_->SetColor(d2dColor);
 
-	int wcharCount = MultiByteToWideChar(CP_UTF8, 0, text.data(), text.size(), nullptr, 0);
+	int wcharCount = MultiByteToWideChar(codePage, 0, text.data(), text.size(), nullptr, 0);
 
 	std::wstring wText(wcharCount, L'\0');
 
-	MultiByteToWideChar(CP_UTF8, 0, text.data(), text.size(), wText.data(), wcharCount);
+	MultiByteToWideChar(codePage, 0, text.data(), text.size(), wText.data(), wcharCount);
 
 	renderTarget_->DrawTextW(
 		wText.c_str(),
 		wText.size(),
+		defaultFont_.textFormat_,
+		D2D1::RectF(x, y, size.width, size.height),
+		defaultFont_.brush_
+	);
+
+	renderTarget_->EndDraw();
+}
+
+void DX2DManager::DrawFontText(const int x, const int y, const std::wstring& text, const Color& color) {
+	D2D1_SIZE_F size = renderTarget_->GetSize();
+	renderTarget_->BeginDraw();
+	D2D1_MATRIX_3X2_F transform_ = D2D1::Matrix3x2F::Scale(1.0, 1.0) * D2D1::Matrix3x2F::Translation(x, y);
+	renderTarget_->SetTransform(transform_);
+
+	D2D1_COLOR_F d2dColor = D2D1::ColorF(0.0, 0.0, 0.0, 1.0);
+	d2dColor.r = color.r_;
+	d2dColor.g = color.g_;
+	d2dColor.b = color.b_;
+	d2dColor.a = color.a_;
+	defaultFont_.brush_->SetColor(d2dColor);
+
+	renderTarget_->DrawTextW(
+		text.c_str(),
+		text.size(),
 		defaultFont_.textFormat_,
 		D2D1::RectF(x, y, size.width, size.height),
 		defaultFont_.brush_
