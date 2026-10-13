@@ -1,6 +1,7 @@
 #include "InputManager.h"
 #include "Framework.h"
 #include <array>
+#include <string>
 
 #pragma comment(lib, "dinput8.lib")
 #pragma comment(lib, "dxguid.lib")
@@ -19,6 +20,7 @@ namespace InputManager {
 
     inline XINPUT_STATE controllerState_ = {};
 
+    inline std::string keyBuffer_ = "";
 }
 
 int InputManager::Init(const HINSTANCE hInstance, const HWND hwnd) {
@@ -49,6 +51,18 @@ void InputManager::Update() {
         &afterMouseState_
     );
 
+    for (int i = 0; i < 256; i++) {
+        if (CheckDownKey(i)) {
+            if (i == DIK_BACKSPACE) {
+                keyBuffer_.pop_back();
+            }
+            else {
+                if (ConvertKeyName(i) == nullptr) continue;
+                keyBuffer_ += ConvertKeyName(i);
+            }
+        }
+    }
+
     GetCursorPos(&mousePostion_);
     ScreenToClient(MochinekoEngine::GetGameWindowHandle(), &mousePostion_);
 
@@ -76,6 +90,57 @@ bool InputManager::CheckPushMouse(const int button) {
 
 bool InputManager::CheckUpMouse(const int button) {
     return (beforeMouseState_.rgbButtons[button] & 0x80) && !(afterMouseState_.rgbButtons[button] & 0x80);
+}
+
+const char* InputManager::ConvertKeyName(const int key) {
+    switch (key) {
+        case DIK_A: return "A";
+        case DIK_B: return "B";
+        case DIK_C: return "C";
+        case DIK_D: return "D";
+        case DIK_E: return "E";
+        case DIK_F: return "F";
+        case DIK_G: return "G";
+        case DIK_H: return "H";
+        case DIK_I: return "I";
+        case DIK_J: return "J";
+        case DIK_K: return "K";
+        case DIK_L: return "L";
+        case DIK_N: return "N";
+        case DIK_M: return "M";
+        case DIK_O: return "O";
+        case DIK_P: return "P";
+        case DIK_Q: return "Q";
+        case DIK_R: return "R";
+        case DIK_S: return "S";
+        case DIK_T: return "T";
+        case DIK_U: return "U";
+        case DIK_V: return "V";
+        case DIK_W: return "W";
+        case DIK_X: return "X";
+        case DIK_Y: return "Y";
+        case DIK_Z: return "Z";
+        default: return nullptr;
+    }
+}
+
+std::string InputManager::GetUpKeyBuffer() {
+    return keyBuffer_;
+}
+
+std::string InputManager::GetLowKeyBuffer() {
+    std::string keyBuffer = GetUpKeyBuffer();
+    std::string lowKeyBuffer = "";
+    for (int i = 0; i < keyBuffer.size(); i++) {
+        char key = keyBuffer[i];
+        lowKeyBuffer += std::tolower(key);
+    }
+
+    return lowKeyBuffer;
+}
+
+void InputManager::DestoryKeyBuffer() {
+    keyBuffer_ = "";
 }
 
 bool InputManager::CheckDownMouse(const int button) {

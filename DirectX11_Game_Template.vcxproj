@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EndingScene.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="MochinekoEngine\BaseCollider.h" />
     <ClInclude Include="MochinekoEngine\BaseObject.h" />
     <ClInclude Include="MochinekoEngine\BaseScene.h" />
@@ -61,11 +62,14 @@
     <ClInclude Include="MochinekoEngine\Transform.h" />
     <ClInclude Include="MochinekoEngine\VideoData.h" />
     <ClInclude Include="MochinekoEngine\VideoObject.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RunningScene.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="WordData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingScene.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="MochinekoEngine\Box.cpp" />
     <ClCompile Include="MochinekoEngine\BoxCollider.cpp" />
     <ClCompile Include="MochinekoEngine\CameraManager.cpp" />
@@ -101,10 +105,9 @@
     <ClCompile Include="MochinekoEngine\Texture.cpp" />
     <ClCompile Include="MochinekoEngine\VideoData.cpp" />
     <ClCompile Include="MochinekoEngine\VideoObject.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RunningScene.cpp" />
-    <ClCompile Include="TitleScene.cpp">
-      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/utf-8 %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
+    <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="MochinekoEngine\PixelShader.hlsl">
@@ -117,6 +120,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="config.json" />
     <None Include="worddata.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
