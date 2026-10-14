@@ -14,13 +14,17 @@ TitleScene::~TitleScene() {
 
 void TitleScene::Init() {
 	startButton_ = new ImageButton("Asset/StartButton.png");
-	startButton_->SetLocation({ 480, 170, 0 });
+	startButton_->SetLocation({ 640, 250, 0 });
 	exitButton_ = new ImageButton("Asset/ExitButton.png");
-	exitButton_->SetLocation({480, 420, 0});
+	exitButton_->SetLocation({640, 500, 0});
 
 
 	ObjectManager::AddObject(startButton_);
 	ObjectManager::AddObject(exitButton_);
+
+	Image* image = new Image("Asset/Logo.png");
+	image->SetLocation({640, 100, 0});
+	ObjectManager::AddObject(image);
 }
 
 void TitleScene::Update() {
@@ -62,5 +66,5 @@ void TitleScene::Update() {
 }
 
 void TitleScene::Draw() {
-	DX2DManager::DrawFontText(0, 0, L"ゲームを開始するにはスペースキーを押してください", Color::Black());
+	//DX2DManager::DrawFontText(0, 0, L"ゲームを開始するにはスペースキーを押してください", Color::Black());
 }
