@@ -30,6 +30,7 @@ namespace DX2DManager {
 	inline FontData defaultFont_ = FontData();
 
 	void Init();
+	void SetTextAlignment(DWRITE_TEXT_ALIGNMENT horizontal, DWRITE_PARAGRAPH_ALIGNMENT vertical);
 	void DrawFontText(const int x, const int y, const std::string& text, const Color& color, UINT codePage = CP_UTF8);
 	void DrawFontText(const int x, const int y, const std::wstring& text, const Color& color);
 	ID2D1RenderTarget* GetRenderTarget();
