@@ -54,15 +54,23 @@ void RunningScene::Update() {
 
 void RunningScene::Draw() {
     //DX2DManager::DrawFontText(0, 0, wordDataList_[0].displayName, Color::Black());
+    RECT rect = {};
+    GetWindowRect(MochinekoEngine::GetGameWindowHandle(), &rect);
+    int width = rect.right - rect.left;
+    int height = rect.bottom - rect.top;
+
     std::string keyBuffer = InputManager::GetUpKeyBuffer();
     std::string lowKeyBuffer = InputManager::GetLowKeyBuffer();
     auto nowWord = GameManager::GetWord();
     float time = GameManager::GetTime();
 
-    DX2DManager::DrawFontText(0, 0, nowWord.displayName, Color::Black(), CP_ACP);
-    DX2DManager::DrawFontText(0, 50, "(" + nowWord.typingText + ")", Color::Black(), CP_ACP);
-    DX2DManager::DrawFontText(0, 75, lowKeyBuffer, Color::Black(), CP_ACP);
-    DX2DManager::DrawFontText(0, 100, std::to_string(time), Color::Black(), CP_ACP);
+    DX2DManager::SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+    DX2DManager::DrawFontText(0, 100, nowWord.displayName, Color::Black(), CP_ACP);
+    DX2DManager::DrawFontText(0, 150, "(" + nowWord.typingText + ")", Color::Black(), CP_ACP);
+    DX2DManager::DrawFontText(0, 200, lowKeyBuffer, Color::Black(), CP_ACP);
+
+    DX2DManager::SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING, DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
+    DX2DManager::DrawFontText(50, 50, "écÇËéûä‘ÅF" + std::to_string(time), Color::Black(), CP_ACP);
 
 }
 

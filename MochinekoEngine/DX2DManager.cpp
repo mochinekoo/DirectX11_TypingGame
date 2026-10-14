@@ -42,16 +42,21 @@ void DX2DManager::Init() {
 		&defaultFont_.textFormat_
 	);
 
-	defaultFont_.textFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
+	defaultFont_.textFormat_->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
 	defaultFont_.textFormat_->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_NEAR);
 
 	renderTarget_->CreateSolidColorBrush(DEFAULT_COLOR, &defaultFont_.brush_);
 }
 
+void DX2DManager::SetTextAlignment(DWRITE_TEXT_ALIGNMENT horizontal, DWRITE_PARAGRAPH_ALIGNMENT vertical) {
+	defaultFont_.textFormat_->SetTextAlignment(horizontal);
+	defaultFont_.textFormat_->SetParagraphAlignment(vertical);
+}
+
 void DX2DManager::DrawFontText(const int x, const int y, const std::string& text, const Color& color, UINT codePage) {
 	D2D1_SIZE_F size = renderTarget_->GetSize();
 	renderTarget_->BeginDraw();
-	D2D1_MATRIX_3X2_F transform_ = D2D1::Matrix3x2F::Scale(1.0, 1.0) * D2D1::Matrix3x2F::Translation(x, y);
+	D2D1_MATRIX_3X2_F transform_ = D2D1::Matrix3x2F::Scale(1.0, 1.0);
 	renderTarget_->SetTransform(transform_);
 
 	D2D1_COLOR_F d2dColor = D2D1::ColorF(0.0, 0.0, 0.0, 1.0);
