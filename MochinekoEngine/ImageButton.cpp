@@ -12,10 +12,10 @@ void ImageButton::Init() {
 void ImageButton::Update() {
 	POINT mousePoint = InputManager::GetMousePostion();
 	Transform imageTransform = image_->GetTransform();
-	XMFLOAT3 imageLoc = imageTransform.location_;
+	XMFLOAT3 imageLoc = transform_.location_;
 
-	bool hoverX = imageLoc.x <= mousePoint.x && imageLoc.x + image_->GetWidth() >= mousePoint.x;
-	bool hoverY = imageLoc.y <= mousePoint.y && imageLoc.y + image_->GetHeight() >= mousePoint.y;
+	bool hoverX = imageLoc.x - image_->GetWidth() / 2 <= mousePoint.x && imageLoc.x + image_->GetWidth() / 2 >= mousePoint.x;
+	bool hoverY = imageLoc.y - image_->GetHeight() / 2 <= mousePoint.y && imageLoc.y + image_->GetHeight() / 2 >= mousePoint.y;
 
 	isHover_ = (hoverX && hoverY);
 	if (isHover_) {

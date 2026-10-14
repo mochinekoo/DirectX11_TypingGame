@@ -31,7 +31,7 @@ void TitleScene::Update() {
 	if (startButton_->IsHover()) {
 		startButtonTime += MochinekoEngine::GetDeltaTime();
 		float rate = startButtonTime / scaleTime;
-		float scale = MathUtil::Lerp(1.0f, 1.5f, rate);
+		float scale = MathUtil::Lerp(1.0f, 1.25f, rate);
 		startButton_->SetScale({scale, scale, scale});
 	}
 	else {
@@ -42,7 +42,7 @@ void TitleScene::Update() {
 	if (exitButton_->IsHover()) {
 		exitButtonTime += MochinekoEngine::GetDeltaTime();
 		float rate = exitButtonTime / scaleTime;
-		float scale = MathUtil::Lerp(1.0f, 1.5f, rate);
+		float scale = MathUtil::Lerp(1.0f, 1.25f, rate);
 
 		exitButton_->SetScale({scale, scale, scale});
 	}
@@ -53,9 +53,11 @@ void TitleScene::Update() {
 
 	if (startButton_->IsPush()) {
 		SceneManager::ChangeScene("RunningScene");
+		return;
 	}
 	if (exitButton_->IsPush()) {
 		MochinekoEngine::Shutdown();
+		return;
 	}
 }
 

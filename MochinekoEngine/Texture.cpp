@@ -70,12 +70,12 @@ void Texture::InitSamplerState() {
 
 void Texture::InitVertexBuffer() {
 	vertexList_.clear();
-	vertexList_.push_back({ {0.0f, 0.0f, 0.0f}, {}, { 1.0f, 1.0f, 1.0f, 1.0f }, {0.0f, 0.0f} });
-	vertexList_.push_back({ {(float) width_, 0.0f, 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, 0.0f} });
-	vertexList_.push_back({ {(float) width_, (float) height_, 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, 1.0f} });
-	vertexList_.push_back({ {(float) width_, (float) height_, 0.0f }, {}, { 1.0f, 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f } });
-	vertexList_.push_back({ {0.0f, (float) height_, 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 1.0f} });
-	vertexList_.push_back({ {0.0f, 0.0f, 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f} });
+	vertexList_.push_back({ {-(float)width_ / 2, -(float)height_ / 2, 0.0f}, {}, { 1.0f, 1.0f, 1.0f, 1.0f }, {0.0f, 0.0f} });
+	vertexList_.push_back({ {(float) width_ - (width_ / 2), -(float)height_ / 2, 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}});
+	vertexList_.push_back({ {(float) width_ - (width_ / 2), (float) height_ - (height_ / 2), 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}});
+	vertexList_.push_back({ {(float) width_ - (width_ / 2), (float) height_ - (height_ / 2), 0.0f }, {}, { 1.0f, 1.0f, 1.0f, 1.0f }, { 1.0f, 1.0f } });
+	vertexList_.push_back({ {-(float)width_ / 2, (float)height_ - (height_ / 2), 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}});
+	vertexList_.push_back({ {-(float)width_ / 2, -(float)height_ / 2, 0.0f}, {}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f}});
 
 	D3D11_BUFFER_DESC vertexDesc = {};
 	vertexDesc.Usage = D3D11_USAGE_DEFAULT;
