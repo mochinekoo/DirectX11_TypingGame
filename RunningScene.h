@@ -4,9 +4,12 @@
 #include <vector>
 #include <string>
 #include "WordData.h"
+#include "MochinekoEngine/Box.h"
 
 class RunningScene : public BaseScene {
 private:
+	Box* backTimerBox_;
+	Box* frontTimerBox_;
 public:
 
 	RunningScene();

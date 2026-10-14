@@ -28,6 +28,16 @@ RunningScene::~RunningScene()
 
 void RunningScene::Init() {
     // InitWordData();
+    backTimerBox_ = new Box(1000, 20, {0, 0, 0, 1});
+    backTimerBox_->SetDrawOrder(900);
+    backTimerBox_->SetLocation({100, 500, 0});
+    frontTimerBox_ = new Box(1000, 20, {1, 0, 0, 1});
+    frontTimerBox_->SetDrawOrder(1000);
+    frontTimerBox_->SetLocation({100, 500, 0});
+  
+    ObjectManager::AddObject(backTimerBox_);
+    ObjectManager::AddObject(frontTimerBox_);
+
     GameManager::Init();
     player_ = new Player();
     ObjectManager::AddObject(player_);
@@ -50,6 +60,9 @@ void RunningScene::Update() {
         GameManager::SetTime(GameManager::DEFAULT_WORD_TIME);
         InputManager::DestoryKeyBuffer();
     }
+
+    float rate = time / GameManager::DEFAULT_WORD_TIME;
+    frontTimerBox_->SetWidth(1000 * rate);
 }
 
 void RunningScene::Draw() {
